@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Grading System</title>
+    <!-- Include the Tailwind CSS CDN link -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-gray-100 min-h-screen flex justify-center items-center">
+    <div class="bg-white p-8 rounded shadow-md w-96">
+      <h2 class="text-2xl font-bold mb-4">Grading System</h2>
+      <form id="gradingForm">
+        <label class="block mb-2" for="name">Name:</label>
+        <input
+          class="border border-gray-300 px-3 py-1 mb-4 w-full"
+          type="text"
+          id="name"
+          required
+        />
+
+        <label class="block mb-2" for="examNumber">Exam Number:</label>
+        <input
+          class="border border-gray-300 px-3 py-1 mb-4 w-full"
+          type="text"
+          id="examNumber"
+          required
+        />
+
+        <label class="block mb-2" for="centerNumber">Center Number:</label>
+        <input
+          class="border border-gray-300 px-3 py-1 mb-4 w-full"
+          type="text"
+          id="centerNumber"
+          required
+        />
+
+        <label class="block mb-2" for="maths">Maths:</label>
+        <input
+          class="border border-gray-300 px-3 py-1 mb-4 w-full"
+          type="number"
+          id="maths"
+          required
+        />
+        <label class="block mb-2" for="maths">English:</label>
+        <input
+          class="border border-gray-300 px-3 py-1 mb-4 w-full"
+          type="number"
+          id="english"
+          required
+        />
+        <label class="block mb-2" for="maths">Computer science:</label>
+        <input
+          class="border border-gray-300 px-3 py-1 mb-4 w-full"
+          type="text"
+          id="computerScience"
+          required
+        />
+        <label class="block mb-2" for="maths">Chemistry:</label>
+        <input
+          class="border border-gray-300 px-3 py-1 mb-4 w-full"
+          type="number"
+          id="chemistry"
+          required
+        />
+        <label class="block mb-2" for="maths">physics:</label>
+        <input
+          class="border border-gray-300 px-3 py-1 mb-4 w-full"
+          type="number"
+          id="physics"
+          required
+        />
+        <label class="block mb-2" for="maths">Biology:</label>
+        <input
+          class="border border-gray-300 px-3 py-1 mb-4 w-full"
+          type="number"
+          id="biology"
+          required
+        />
+        <label class="block mb-2" for="maths">Civics:</label>
+        <input
+          class="border border-gray-300 px-3 py-1 mb-4 w-full"
+          type="number"
+          id="civics"
+          required
+        />
+        <label class="block mb-2" for="maths">Geography:</label>
+        <input
+          class="border border-gray-300 px-3 py-1 mb-4 w-full"
+          type="number"
+          id="geography"
+          required
+        />
+        <button
+          class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+          type="submit"
+        >
+          Calculate
+        </button>
+      </form>
+
+      <div id="result" class="mt-8"></div>
+    </div>
+    <script src="index.js"></script>
+  </body>
+</html>
