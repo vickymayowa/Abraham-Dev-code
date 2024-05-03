@@ -27,12 +27,8 @@ form.addEventListener("submit", function (event) {
   // Validate subject scores
   let hasError = false;
   for (const subject in subjects) {
-    if (
-      subjects[subject] === "" ||
-      isNaN(subjects[subject]) ||
-      parseInt(subjects[subject]) < 0 ||
-      parseInt(subjects[subject]) > 100
-    ) {
+    const score = subjects[subject];
+    if (score === "" || !/^\d+$/.test(score) || +score < 0 || +score > 100) {
       hasError = true;
       alert(
         `Invalid score for ${subject}. Please enter a number between 0 and 100.`
@@ -48,7 +44,7 @@ form.addEventListener("submit", function (event) {
 
     // Calculate total score and count of subjects
     for (const subject in subjects) {
-      totalScore += parseInt(subjects[subject]);
+      totalScore += +subjects[subject];
       subjectCount++;
     }
 
@@ -67,10 +63,10 @@ form.addEventListener("submit", function (event) {
     `;
 
     for (const subject in subjects) {
-      const subjectPercentage = (parseInt(subjects[subject]) / 100) * 100;
-      resultDiv.innerHTML += `${subject}:\t${parseInt(
-        subjects[subject]
-      )}\t${subjectPercentage.toFixed(2)}%<br>`;
+      const subjectPercentage = (+subjects[subject] / 100) * 100;
+      resultDiv.innerHTML += `${subject}:\t${+subjects[
+        subject
+      ]}\t${subjectPercentage.toFixed(2)}%<br>`;
     }
 
     resultDiv.innerHTML += `\nOverall Percentage: ${overallPercentage.toFixed(
