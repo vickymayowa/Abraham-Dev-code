@@ -1,33 +1,37 @@
+// Get the form and result div elements
 const form = document.getElementById("gradingForm");
 const resultDiv = document.getElementById("result");
 
+// Add a submit event listener to the form
 form.addEventListener("submit", function (event) {
-  event.preventDefault(); // Prevent default form submission
+  // Prevent the default form submission
+  event.preventDefault();
 
+  // Get values from form inputs
   const name = document.getElementById("name").value;
   const examNumber = document.getElementById("examNumber").value;
   const centerNumber = document.getElementById("centerNumber").value;
 
+  // Create an object to store subject scores
   const subjects = {
-    maths: parseInt(document.getElementById("maths").value),
-    english: parseInt(document.getElementById("english").value),
-    "computer science": parseInt(
-      document.getElementById("computerScience").value
-    ),
-    chemistry: parseInt(document.getElementById("chemistry").value),
-    physics: parseInt(document.getElementById("physics").value),
-    biology: parseInt(document.getElementById("biology").value),
-    civics: parseInt(document.getElementById("civics").value),
-    geography: parseInt(document.getElementById("geography").value),
+    maths: document.getElementById("maths").value.trim(),
+    english: document.getElementById("english").value.trim(),
+    "computer science": document.getElementById("computerScience").value.trim(),
+    chemistry: document.getElementById("chemistry").value.trim(),
+    physics: document.getElementById("physics").value.trim(),
+    biology: document.getElementById("biology").value.trim(),
+    civics: document.getElementById("civics").value.trim(),
+    geography: document.getElementById("geography").value.trim(),
   };
 
-  // Validate and handle potential errors
+  // Validate subject scores
   let hasError = false;
   for (const subject in subjects) {
     if (
+      subjects[subject] === "" ||
       isNaN(subjects[subject]) ||
-      subjects[subject] < 0 ||
-      subjects[subject] > 100
+      parseInt(subjects[subject]) < 0 ||
+      parseInt(subjects[subject]) > 100
     ) {
       hasError = true;
       alert(
@@ -37,16 +41,19 @@ form.addEventListener("submit", function (event) {
     }
   }
 
-  // Calculate only if there are no errors
+  // Calculate and display results if there are no errors
   if (!hasError) {
-    const totalScore = Object.values(subjects).reduce(
-      (acc, subject) => acc + subject,
-      0
-    );
-    const overallPercentage =
-      (totalScore /
-        Object.values(subjects).reduce((acc, subject) => acc + 100, 0)) *
-      100;
+    let totalScore = 0;
+    let subjectCount = 0;
+
+    // Calculate total score and count of subjects
+    for (const subject in subjects) {
+      totalScore += parseInt(subjects[subject]);
+      subjectCount++;
+    }
+
+    // Calculate overall percentage
+    const overallPercentage = (totalScore / (subjectCount * 100)) * 100;
 
     // Display results in the resultDiv element
     resultDiv.innerHTML = `
@@ -60,10 +67,10 @@ form.addEventListener("submit", function (event) {
     `;
 
     for (const subject in subjects) {
-      const subjectPercentage = (subjects[subject] / 100) * 100;
-      resultDiv.innerHTML += `${subject}:\t${
+      const subjectPercentage = (parseInt(subjects[subject]) / 100) * 100;
+      resultDiv.innerHTML += `${subject}:\t${parseInt(
         subjects[subject]
-      }\t${subjectPercentage.toFixed(2)}%<br>`;
+      )}\t${subjectPercentage.toFixed(2)}%<br>`;
     }
 
     resultDiv.innerHTML += `\nOverall Percentage: ${overallPercentage.toFixed(
